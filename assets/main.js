@@ -1,8 +1,13 @@
+// import { useRoute, useRouter } from 'vue-router';
+
+// const router = useRouter()
+const logins = {login:'user', password:'1'}
 Vue.createApp({
     data() {
         return {
             login: '',
             password: '',
+            folder: 'Проект разработан группой РИЗ-330916у'
         };
     },
     methods: {
@@ -20,8 +25,14 @@ Vue.createApp({
         //   username: this.username,
         //   password: this.password
         // });
-        
-        this.login = this.password = '';
+        if(this.login == logins.login && this.password == logins.password){
+            this.login = this.password = '';
+            window.location = './pages/activites_list/activites_list.html'
+        }
+        else{
+            alert("Логин и/или пароль неверны")
+        }
+        // router.push({path:'./pages/user_browse/user_browse.html'})
         },
     }
 }

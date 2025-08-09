@@ -13,9 +13,11 @@
         </div>
         <div class="info">
             <div class="form">
+                <p>Логин</p>
                 <input type="text"
                     v-model="login"
                     v-on:input="handlelogin">
+                <p>Пароль</p>
                 <input type="password"
                     v-model="password"
                     v-on:input="handlepassword">
@@ -23,7 +25,7 @@
             </div>
         </div>
         <div class="folder">
-
+            <p>{{folder}}</p>
         </div>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

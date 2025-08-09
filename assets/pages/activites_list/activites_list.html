@@ -2,15 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
-    <title>Список активов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../../style.css">
+    <title>Просмотр активов</title>
 </head>
 <body>
-    
-    
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="../app.js"></script>
+    <div id="user_browse">
+        <div class="header">
+            <h1>Просмотр активов</h1>
+            <a href="../user_browse/user_browse.html">Сотрудники</a>
+            <a href="../activites_list/activites_list.html">Активы</a>
+        </div>
+        <div class="info">
+          <table>
+            <thead>
+              <tr>
+                <th v-on:click="sort('name')">Название</th>
+                <th v-on:click="sort('status')">Статус</th>
+                <th v-on:click="sort('date_create')">Дата создания</th>
+                <th v-on:click="sort('owner')">Владелец</th>
+                <th v-on:click="sort('inventory_number')">Инвертарный номер</th>
+                <th v-on:click="sort('type_object')">Тип объекта</th>
+                <th v-on:click="sort('serial_number')">Серийный номер</th>
+              </tr>
+            </thead>
+                <tbody>
+                  <tr v-for="item in sorted">
+                    <th v-on:click="viewActive(item.name)">{{item.name}}</th>
+                    <th>{{item.status}}</th>
+                    <th>{{item.date_create}}</th>
+                    <th v-on:click="viewUser(item.owner)">{{item.owner}}</th>
+                    <th>{{item.inventory_number}}</th>
+                    <th>{{item.type_object}}</th>
+                    <th>{{item.serial_number}}</th>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="folder">          
+            <p>{{folder}}</p>
+        </div>        
+    </div>    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./activites_list.js"></script>
+    <!-- <script src="../../main.js"></script> -->
 </body>
 </html>
