@@ -4,40 +4,72 @@
 }
 
 .header{
-    background: grey;
+    background: rgb(42,63,90);
     height: 3vh;
     width: 95%;
     color: white;
     padding-top: 2vh;
     padding-bottom: 2vh;
     padding-left: 5%;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 5% 5% 5% auto 5% 5%;
+    font-size: 1.8vh;
 }
 .info{
-    height: 87vh;
+    height: 90vh;
     width: 80%;
     padding-top: 1vh;
     padding-left: 10%;
     padding-right: 10%;
+    font-size: 2vh;
+    background-color: rgb(239, 243, 248);
+}
+.table {
+    background-color: white;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.table button{
+    background-color: rgb(244,244,244);
+    border: none;
+    margin-left: 1%;
+    width: 10%;
+    height: 3vh;
+    color: rgb(95, 95, 95);
+}
+.table select{
+    width: 20%;
+    height: 3vh;
+    border-color: rgb(192, 192, 192);
 }
 .info table{
+    border: none; 
     border-collapse: collapse;
-    border: 1px solid grey;
     width: 100%;
+    background-color: white;
+    min-height: 30vh;
 }
 .info table thead tr{
     width: 100%;
-    border: 1px solid grey;
+    color: rgb(95,95,95);
+    /* border: 1px solid grey; */
 }
 .info table thead th{
-    width: 15%;
-    border: 1px solid grey;
+    width: 15%;    
 }
-.info table tbody tr{
+/* .info table tbody tr{
     border: 1px solid grey;
+} */
+.info table tbody th{
+    border-top: 1px solid rgb(192, 192, 192);
+    min-height: 10vh;
+    color: rgb(95,95,95);
 }
-
 .form{
     display:flex;
     flex-direction: column;
@@ -57,7 +89,7 @@
 }
 
 
-.folder{
+/* .folder{
     height: 4vh;
     width: 80%;
     background-color: grey;
@@ -65,4 +97,4 @@
     padding-right: 10%;
     color: white;
     padding-top: 1vh;
-}
+} */

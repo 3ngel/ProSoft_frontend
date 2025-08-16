@@ -31,7 +31,13 @@ Vue.createApp({
         viewUser(name){
             console.log("Просмотр пользователя "+ name)
             window.location = "../user_browse/user_browse.html?user="+name
-        }
+        },
+        exit(){
+            window.location = "../../index.html"
+        },
+        to_users(){
+            // window.location = "../user_browse/user_browse.html"
+        },
         
     },
     computed:{

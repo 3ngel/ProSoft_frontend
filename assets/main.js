@@ -2,6 +2,8 @@
 
 // const router = useRouter()
 const logins = {login:'user', password:'1'}
+// const key = '52495A2D33333039313675'
+// const CryptoJS = require('crypto-js'); 
 Vue.createApp({
     data() {
         return {
@@ -19,6 +21,8 @@ Vue.createApp({
         },
         async authorization () {
         if(this.login === '' || this.password ==='') { alert("Вы не ввели логин или пароль"); return};
+        // const hash = CryptoJS.HmacSHA256(this.password, key).toString();
+        // console.log("Ваш логин "+this.login+"\nВаш пароль "+hash);
         console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
         //запрос к back
         // const response = await axios.post('https://jsonplaceholder.typicode.com/users', {
