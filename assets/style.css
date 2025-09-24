@@ -63,11 +63,14 @@
     width: 15%;    
 }
 /* .info table tbody tr{
-    border: 1px solid grey;
-} */
+   border: 1px solid grey;
+   min-height: 1vh;
+    max-height: 6vh;
+}*/ 
 .info table tbody th{
     border-top: 1px solid rgb(192, 192, 192);
-    min-height: 10vh;
+    min-height: 5vh;
+    max-height: 7vh;
     color: rgb(95,95,95);
 }
 .form{
@@ -86,6 +89,10 @@
 .form button:hover{
     background-color: white;
     color: black;
+}
+
+.worker{
+    margin-left: 10%;
 }
 
 

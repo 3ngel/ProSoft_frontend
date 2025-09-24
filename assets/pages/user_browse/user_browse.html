@@ -9,12 +9,60 @@
 </head>
 <body>
     <div id="user_browse">
-        <div class="header">          
-            <a href="../user_browse/user_browse.html">Сотрудники</a>
-            <a href="../activites_list/activites_list.html">Активы</a>
+        <div class="header">
+            <img src="" alt="Логотип">
+            <p v-on:click="to_users()">Сотрудники</p>
+            <p>Активы</p>
+            <div></div>
+            <p>Firstname Lastname patronomyc</p>
+            <p v-on:click="exit()">Выйти</p>
+        </div>
+        <div class="worker">
+            <h1>Сотрудник "{{name}}"</h1>
+            <p>Мои заявки</p>
+            <p>Активы</p>
         </div>
         <div class="info">
-            <h1>{{name}}</h1>
+                <div class="table">
+                    <div class="head">
+                    <select name="kind" id="">
+                        <option value="none">[Выберите вид]</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                    </select>
+                    <button>Сохранить вид</button>
+                    <button>Сортировка</button>
+                    <button>Фильтрация</button>
+                    <button>Просмотреть архив</button>
+                    <button>Обновить список</button>
+                    </div>
+                    <table>
+                    <thead>
+                        <tr>
+                        <th v-on:click="sort('name')">Название</th>
+                        <th v-on:click="sort('status')">Статус</th>
+                        <th v-on:click="sort('date_create')">Дата создания</th>
+                        <th v-on:click="sort('owner')">Владелец</th>
+                        <th v-on:click="sort('inventory_number')">Инвертарный номер</th>
+                        <th v-on:click="sort('type_object')">Тип объекта</th>
+                        <th v-on:click="sort('serial_number')">Серийный номер</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                        <tr v-for="item in sorted">
+                            <th v-on:click="viewActive(item.name)">{{item.name}}</th>
+                            <th>{{item.status}}</th>
+                            <th>{{item.date_create}}</th>
+                            <!-- <th v-on:click="viewUser(item.owner)">{{item.owner}}</th> -->
+                            <th>{{item.owner}}</th>
+                            <th>{{item.inventory_number}}</th>
+                            <th>{{item.type_object}}</th>
+                            <th>{{item.serial_number}}</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
         </div>
         {{folder}}        
     </div>    
