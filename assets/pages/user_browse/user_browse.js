@@ -38,7 +38,9 @@ Vue.createApp({
         to_users(){
             // window.location = "../user_browse/user_browse.html"
         },
-
+        to_activites(){
+            window.location = "../activites_list/activites_list.html";
+        },
         //Проверка, что пользователь авторизован
         checkuser(){
             return},

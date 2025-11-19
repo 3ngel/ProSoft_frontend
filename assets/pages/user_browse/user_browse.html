@@ -10,17 +10,19 @@
 <body>
     <div id="user_browse">
         <div class="header">
-            <img src="" alt="Логотип">
+            <img src="../../logo.png" alt="Логотип">
             <p v-on:click="to_users()">Сотрудники</p>
-            <p>Активы</p>
+            <p v-on:click="to_activites()">Активы</p>
             <div></div>
             <p>Firstname Lastname patronomyc</p>
             <p v-on:click="exit()">Выйти</p>
         </div>
         <div class="worker">
             <h1>Сотрудник "{{name}}"</h1>
-            <p>Мои заявки</p>
-            <p>Активы</p>
+            <div>
+                <p>Мои заявки</p>
+                <p>Активы</p>
+            </div>            
         </div>
         <div class="info">
                 <div class="table">

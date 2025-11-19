@@ -30,7 +30,12 @@ Vue.createApp({
         //   password: this.password
         // });
         if(this.login == logins.login && this.password == logins.password){
-            this.login = this.password = '';
+            if (navigator.cookieEnabled === false){
+	            alert("Cookies отключены!");
+            }    
+            document.cookie = "user=user;"
+            alert(document.cookie)
+            this.login = this.password = '';            
             window.location = './pages/activites_list/activites_list.html'
         }
         else{

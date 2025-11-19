@@ -1,17 +1,17 @@
 // import { useRoute, useRouter } from 'vue-router';
-
 // const router = useRouter()
 const logins = {login:'user', password:'1'}
 Vue.createApp({
     data() {
         return {
             items: [],
-             currentSort:'name',
-             currentSortDir:'asc',
+            currentSort:'name',
+            currentSortDir:'asc',
             folder: 'Проект разработан группой РИЗ-330916у'
         };
     },
     created(){
+        console.log(document.cookie)
         this.items = [{ name: 'GHG', status:'Используется', date_create:'2025-01-02', owner:'Я', inventory_number:'1', type_object:'Монитор', serial_number:'11'},
                 { name: 'Sdfdy', status:'Ремонт', date_create:'2025-01-01', owner:'Моя сестра', inventory_number:'2', type_object:'Процессор', serial_number:'22'},
                 { name: 'Sodf', status:'Списан', date_create:'2025-03-01', owner:'Ты', inventory_number:'3', type_object:'ОС', serial_number:'33'},
@@ -27,6 +27,7 @@ Vue.createApp({
         },
         viewActive(name){
             console.log("Просмотр актива "+ name)
+            apiUrl=config.env.apiUrl
         },
         viewUser(name){
             console.log("Просмотр пользователя "+ name)
