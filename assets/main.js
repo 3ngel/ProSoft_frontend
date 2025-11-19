@@ -1,5 +1,6 @@
 // import { useRoute, useRouter } from 'vue-router';
 
+
 // const router = useRouter()
 const logins = {login:'user', password:'1'}
 // const key = '52495A2D33333039313675'
@@ -32,7 +33,7 @@ Vue.createApp({
         if(this.login == logins.login && this.password == logins.password){
             if (navigator.cookieEnabled === false){
 	            alert("Cookies отключены!");
-            }    
+            }
             document.cookie = "user=user;"
             alert(document.cookie)
             this.login = this.password = '';            
