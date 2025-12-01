@@ -1,13 +1,45 @@
+
+const getCookie = (key) => {
+  let cookies = document.cookie.split("; ");
+  let cookies_list_obj = {};
+
+  for (let i = 0; i < cookies.length; i++) {
+    let name_value = cookies[i].split("=");
+    let name = name_value[0];
+    let value = decodeURIComponent(name_value[1]);
+    cookies_list_obj[name] = value;
+
+    if (key === name) {
+      return value;
+    }
+  }
+
+  if (key !== undefined) {
+    return null;
+  } else {
+    return cookies_list_obj;
+  }
+};
+
+const removeCookie = (name, attributes) => {
+  attributes = attributes || {};
+  attributes.expires = new Date(0).toUTCString();
+  setCookie(name, "", undefined, attributes);
+};
+
 Vue.createApp({
     data() {
         const url = new URLSearchParams(window.location.search);
         const name = url.get('user')
+        const config = require('../../config.json')
         return {
             name,
             items:[],
              currentSort:'name',
              currentSortDir:'asc',
-            folder: 'Проект разработан группой РИЗ-330916у'
+             folder: 'Проект разработан группой РИЗ-330916у',
+            api_url: config.URL,
+            user: getCookie("user") || "Панфилова Ангелина Олеговна"
         };
     },
     async created(){
@@ -33,6 +65,8 @@ Vue.createApp({
         //     window.location = "../user_browse/user_browse.html?user="+name
         // },
         exit(){
+            removeCookie("user");
+            removeCookie("user_id");
             window.location = "../../index.html"
         },
         to_users(){

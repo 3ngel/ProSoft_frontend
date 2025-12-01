@@ -1,17 +1,52 @@
 // import { useRoute, useRouter } from 'vue-router';
 // const router = useRouter()
+const getCookie = (key) => {
+  let cookies = document.cookie.split("; ");
+  let cookies_list_obj = {};
+
+  for (let i = 0; i < cookies.length; i++) {
+    let name_value = cookies[i].split("=");
+    let name = name_value[0];
+    let value = decodeURIComponent(name_value[1]);
+    cookies_list_obj[name] = value;
+
+    if (key === name) {
+      return value;
+    }
+  }
+
+  if (key !== undefined) {
+    return null;
+  } else {
+    return cookies_list_obj;
+  }
+};
+
+const removeCookie = (name, attributes) => {
+  attributes = attributes || {};
+  attributes.expires = new Date(0).toUTCString();
+  setCookie(name, "", undefined, attributes);
+};
 const logins = {login:'user', password:'1'}
 Vue.createApp({
     data() {
+        const config = require('../../config.json')
         return {
             items: [],
             currentSort:'name',
             currentSortDir:'asc',
-            folder: 'Проект разработан группой РИЗ-330916у'
+            folder: 'Проект разработан группой РИЗ-330916у',
+            url_api: config.URL,
+            user: getCookie("user") || "Панфилова Ангелина Олеговна"
         };
     },
-    created(){
+    async created(){
         console.log(document.cookie)
+        const response = await axios.post(this.api_url+'/get_all_activites', {
+          login: this.username,
+          password: this.password
+        });
+        // this.item = response;
         this.items = [{ name: 'GHG', status:'Используется', date_create:'2025-01-02', owner:'Я', inventory_number:'1', type_object:'Монитор', serial_number:'11'},
                 { name: 'Sdfdy', status:'Ремонт', date_create:'2025-01-01', owner:'Моя сестра', inventory_number:'2', type_object:'Процессор', serial_number:'22'},
                 { name: 'Sodf', status:'Списан', date_create:'2025-03-01', owner:'Ты', inventory_number:'3', type_object:'ОС', serial_number:'33'},
@@ -34,6 +69,8 @@ Vue.createApp({
             window.location = "../user_browse/user_browse.html?user="+name
         },
         exit(){
+            removeCookie("user");
+            removeCookie("user_id");
             window.location = "../../index.html"
         },
         to_users(){

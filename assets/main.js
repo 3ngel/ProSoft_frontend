@@ -7,10 +7,12 @@ const logins = {login:'user', password:'1'}
 // const CryptoJS = require('crypto-js'); 
 Vue.createApp({
     data() {
+        const config = require("./config.json")
         return {
             login: '',
             password: '',
-            folder: 'Проект разработан группой РИЗ-330916у'
+            folder: 'Проект разработан группой РИЗ-330916у',
+            api_url: config.URL
         };
     },
     methods: {
@@ -25,17 +27,20 @@ Vue.createApp({
         // const hash = CryptoJS.HmacSHA256(this.password, key).toString();
         // console.log("Ваш логин "+this.login+"\nВаш пароль "+hash);
         console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
-        //запрос к back
-        // const response = await axios.post('https://jsonplaceholder.typicode.com/users', {
-        //   username: this.username,
-        //   password: this.password
-        // });
-        if(this.login == logins.login && this.password == logins.password){
+        // запрос к back
+        const response = await axios.post(this.api_url+'/user_verify', {
+          login: this.username,
+          password: this.password
+        });
+        //Успешная аутентификация
+        if(response.error==null){
+        // if(this.login == logins.login && this.password == logins.password){
             if (navigator.cookieEnabled === false){
 	            alert("Cookies отключены!");
             }
-            document.cookie = "user=user;"
-            alert(document.cookie)
+            //Задаю куки авторизованного пользователя
+            document.cookie = "user_id="+response.user_id
+            document.cookie = "user="+response.user
             this.login = this.password = '';            
             window.location = './pages/activites_list/activites_list.html'
         }
