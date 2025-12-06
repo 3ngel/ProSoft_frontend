@@ -10,7 +10,7 @@ Vue.createApp({
             login: '',
             password: '',
             folder: 'Проект разработан группой РИЗ-330916у',
-            api_url: "http://pro-soft.g-shamkhal.ru/api"
+            api_url: "https://pro-soft.g-shamkhal.ru/api"
         };
     },
     methods: {
