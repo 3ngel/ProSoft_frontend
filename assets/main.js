@@ -25,10 +25,28 @@ Vue.createApp({
             
             console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
             // запрос к back
-            const response = await axios.post(this.api_url+'/user_verify', {
-                login: this.username,
-                password: this.password //Хеш от пароля
-            });
+                let xhr = new XMLHttpRequest();
+
+                xhr.open('GET', this.api_url+'/user_verify');
+
+                xhr.responseType = 'json';
+
+                xhr.send({
+                    login: this.username,
+                    password: this.password //Хеш от пароля
+                });
+
+                // тело ответа {"message": "Привет, мир!"}
+                xhr.onload = function() {
+                    let responseObj = xhr.response;
+                    alert(responseObj.message); // Привет, мир!
+                };
+
+            // const response = await axios.post(this.api_url+'/user_verify', 
+            // {
+            //     login: this.username,
+            //     password: this.password //Хеш от пароля
+            // });
             // let response = await fetch(this.api_url+'/user_verify',{
             //     method: 'POST',
             //     mode:'no-cors',
