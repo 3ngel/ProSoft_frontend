@@ -1,6 +1,6 @@
 // import { useRoute, useRouter } from 'vue-router';
 
-const md5 = require("md5");
+// const md5 = require("md5");
 const logins = {login:'user', password:'1'}
 Vue.createApp({
     data() {
@@ -21,11 +21,12 @@ Vue.createApp({
         },
         async authorization () {
         if(this.login === '' || this.password ==='') { alert("Вы не ввели логин или пароль"); return};
+            
             console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
             // запрос к back
             const response = await axios.post(this.api_url+'/user_verify', {
             login: this.username,
-            password: md5(this.password) //Хеш от пароля
+            password: this.password //Хеш от пароля
             });
             //Успешная аутентификация
             if(response.error==null){
