@@ -25,28 +25,28 @@ Vue.createApp({
             
             console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
             // запрос к back
-            // const response = await axios.post(this.api_url+'/user_verify', {
-            //     login: this.username,
-            //     password: this.password //Хеш от пароля
-            // });
-            let response = await fetch(this.api_url+'/user_verify',{
-                method: 'POST',
-                mode:'no-cors',
-                data:{
-                    login: this.username,
-                    password: this.password
-                }
-                // credentials: 'include'
-                }).then((response)=>{
-                return response.text();
-                })
-                .then(function(data) {
-                console.log(data);
-                return new Promise((resolve, reject)=>{
-                    resolve(data ? JSON.parse(data) : {})
-                })
-                });
-                console.log(response.text())
+            const response = await axios.post(this.api_url+'/user_verify', {
+                login: this.username,
+                password: this.password //Хеш от пароля
+            });
+            // let response = await fetch(this.api_url+'/user_verify',{
+            //     method: 'POST',
+            //     mode:'no-cors',
+            //     data:{
+            //         login: this.username,
+            //         password: this.password
+            //     }
+            //     // credentials: 'include'
+            //     }).then((response)=>{
+            //     return response.text();
+            //     })
+            //     .then(function(data) {
+            //     console.log(data);
+            //     return new Promise((resolve, reject)=>{
+            //         resolve(data ? JSON.parse(data) : {})
+            //     })
+            //     });
+            //     console.log(response.text())
             //Успешная аутентификация
             if(response.error==null){
                 if (navigator.cookieEnabled === false){
