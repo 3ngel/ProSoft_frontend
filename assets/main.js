@@ -1,15 +1,16 @@
 // import { useRoute, useRouter } from 'vue-router';
+//import cfg from './config.json' with { type:"json"};
 
 // const md5 = require("md5");
 const logins = {login:'user', password:'1'}
 Vue.createApp({
     data() {
-        const config = require("./config.json")
+        // const config = cfg
         return {
             login: '',
             password: '',
             folder: 'Проект разработан группой РИЗ-330916у',
-            api_url: config.URL
+            api_url: "http://pro-soft.g-shamkhal.ru/api"
         };
     },
     methods: {
@@ -24,10 +25,28 @@ Vue.createApp({
             
             console.log("Ваш логин "+this.login+"\nВаш пароль "+this.password);
             // запрос к back
-            const response = await axios.post(this.api_url+'/user_verify', {
-            login: this.username,
-            password: this.password //Хеш от пароля
-            });
+            // const response = await axios.post(this.api_url+'/user_verify', {
+            //     login: this.username,
+            //     password: this.password //Хеш от пароля
+            // });
+            let response = await fetch(this.api_url+'/user_verify',{
+                method: 'POST',
+                mode:'no-cors',
+                data:{
+                    login: this.username,
+                    password: this.password
+                }
+                // credentials: 'include'
+                }).then((response)=>{
+                return response.text();
+                })
+                .then(function(data) {
+                console.log(data);
+                return new Promise((resolve, reject)=>{
+                    resolve(data ? JSON.parse(data) : {})
+                })
+                });
+                console.log(response.text())
             //Успешная аутентификация
             if(response.error==null){
                 if (navigator.cookieEnabled === false){
